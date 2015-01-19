@@ -2,7 +2,7 @@
   "name": "domx-repeat",
   "repo": "esha/domx-repeat",
   "description": "DOMx extension that makes it trivial to repeat DOM structures (yes, templates but w/o special syntax).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "DOMx",
     "DOM",

@@ -1,6 +1,6 @@
 {
     "name": "domx-repeat",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "dist/domx-repeat.js",
     "description": "DOMx extension that makes it trivial to repeat DOM structures (yes, templates but w/o special syntax).",
     "keywords": [

@@ -35,5 +35,6 @@ Adds `repeat([value])` function to DOM nodes and lists.
 
 ### Release History
 * 2014-12-10 [v0.1.0][] (first public release)
+* 2015-01-19 [v0.1.1][] (bugfix - add backup link/storage for anchor's content)
 
 [v0.1.0]: https://github.com/esha/domx/tree/0.1.0
