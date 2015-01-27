@@ -1,46 +1,47 @@
 {
-    "name": "domx-repeat",
-    "version": "0.1.1",
-    "main": "dist/domx-repeat.js",
-    "description": "DOMx extension that makes it trivial to repeat DOM structures (yes, templates but w/o special syntax).",
-    "keywords": [
-        "DOMx",
-        "DOM",
-        "template",
-        "repeat",
-        "xvalue"
-    ],
-    "author": {
-        "name": "ESHA Research",
-        "email": "nathan@esha.com",
-        "url": "http://www.esha.com/"
+  "name": "domx-repeat",
+  "version": "0.1.1",
+  "main": "dist/domx-repeat.js",
+  "description": "DOMx extension that makes it trivial to repeat DOM structures (yes, templates but w/o special syntax).",
+  "keywords": [
+    "DOMx",
+    "DOM",
+    "template",
+    "repeat",
+    "xvalue"
+  ],
+  "author": {
+    "name": "ESHA Research",
+    "email": "nathan@esha.com",
+    "url": "http://www.esha.com/"
+  },
+  "homepage": "http://esha.github.io/domx-repeat/",
+  "bugs": "https://github.com/esha/domx-repeat/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:esha/domx-repeat.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.githubusercontent.com/esha/domx-repeat/master/LICENSE-MIT"
     },
-    "homepage": "http://esha.github.io/domx-repeat/",
-    "bugs": "https://github.com/esha/domx-repeat/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com:esha/domx-repeat.git"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "https://raw.githubusercontent.com/esha/domx-repeat/master/LICENSE-MIT"
-        },
-        {
-            "type": "GPL",
-            "url": "http://www.gnu.org/licenses/gpl.html"
-        }
-    ],
-    "dependencies": {
-        "domx": "0.x.x"
-    },
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "components",
-        "libs",
-        "test",
-        "src",
-        "Gruntfile.js"
-    ]
+    {
+      "type": "GPL",
+      "url": "http://www.gnu.org/licenses/gpl.html"
+    }
+  ],
+  "dependencies": {
+    "domx": "0.x.x",
+    "domx-value": "~0.2.4"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "libs",
+    "test",
+    "src",
+    "Gruntfile.js"
+  ]
 }
