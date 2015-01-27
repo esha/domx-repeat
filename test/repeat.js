@@ -21,12 +21,12 @@
   */
 
     var X = D.x,
-        _ = X._;
+        _ = X._,
+        R = _.repeat;
     module("repeat()");
 
     test("_.", function() {
         equal(typeof _.repeat, "object", "_.repeat");
-        var R = _.repeat;
         equal(R.id, "x-repeat-id");
         equal(typeof R.count, "number", "_.repeat.count");
         equal(typeof R.init, "function", "_.repeat.init");
@@ -118,6 +118,22 @@
 
         // clean up
         D.queryAll('.self').remove();
+    });
+
+    test('[x-repeat] with siblings', function() {
+        var ul = D.createElement('ul'),
+            lih = D.createElement('li'),
+            lir = D.createElement('li');
+        lih.classList.add('header');
+        lir.setAttribute('x-repeat','');
+        lir.setAttribute('name','tests');
+        ul.appendChild(lih);
+        ul.appendChild(lir);
+        R.init(lir);
+        equal(ul.queryAll('li').length, 1, 'should have only one <li> now');
+        equal(ul.queryNameAll('tests').length, 1, 'should still have one [name="tests"]');
+        ul.xValue = { tests: ['bar']};
+        equal(ul.queryAll('li').length, 2, 'should have two <li> now');
     });
 
 }(document));
