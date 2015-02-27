@@ -1,5 +1,6 @@
 var R = _.repeat = {
     id: 'x-repeat-id',
+    each: 'x-repeat-each',
     count: 0,
     init: function(el, keep) {
         var selector = el.getAttribute('x-repeat'),
@@ -15,17 +16,30 @@ var R = _.repeat = {
             }
             anchor.setAttribute(attr.name, attr.value);
         }
-        el.parentNode.insertBefore(anchor, el.nextSibling);
+        R.parent(el).insertBefore(anchor, el.nextSibling);
         _.defprop(anchor, 'content', R[id] = content);
         if (keep !== true) {
             el.remove();
         }
         return id;
     },
+    parent: function(el) {
+        if (!el.parentNode) {
+            D.createDocumentFragment().appendChild(el);
+        }
+        return el.parentNode;
+    },
     repeat: function(parent, anchor, content, val) {
         var repeat = content.cloneNode(true);
         if (val !== undefined && val !== null) {
             repeat.xValue = val;
+        }
+        if (repeat.hasAttribute(R.each)) {
+            repeat.getAttribute(R.each)
+                .split(',')
+                .forEach(function(call) {
+                    _.resolve(call, window, [repeat, val]);
+                });
         }
         parent.insertBefore(repeat, anchor);
         return repeat;
@@ -34,7 +48,7 @@ var R = _.repeat = {
 };
 
 X.add('repeat', function repeat(val) {
-    var parent = this.parentNode,
+    var parent = R.parent(this),
         id = this.getAttribute(R.id) || R.init(this, true),
         selector = '['+R.id+'="'+id+'"]',
         selectAll = selector+':not(x-repeat)';

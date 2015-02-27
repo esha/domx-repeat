@@ -136,4 +136,18 @@
         equal(ul.queryAll('li').length, 2, 'should have two <li> now');
     });
 
+    test('[x-repeat] with callback(s)', function() {
+        expect(6);
+        window.Nest = {};
+        window.Test = window.Nest.Test = function(repeat, val) {
+            ok(repeat instanceof Element);
+            notStrictEqual(repeat, el);
+            equal(val, 'value');
+            delete window.Test;
+        };
+        var el = D.createElement('div');
+        el.setAttribute(R.each, 'Test,Nest.Test');
+        el.repeat('value');
+    });
+
 }(document));
