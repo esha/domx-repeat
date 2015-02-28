@@ -1,4 +1,4 @@
-/*! domx-repeat - v0.2.0 - 2015-02-26
+/*! domx-repeat - v0.2.1 - 2015-02-27
 * http://esha.github.io/domx-repeat/
 * Copyright (c) 2015 ESHA Research; Licensed MIT, GPL */
 
@@ -45,6 +45,7 @@ var R = _.repeat = {
         if (val !== undefined && val !== null) {
             repeat.xValue = val;
         }
+        parent.insertBefore(repeat, anchor);
         if (repeat.hasAttribute(R.each)) {
             repeat.getAttribute(R.each)
                 .split(',')
@@ -52,7 +53,6 @@ var R = _.repeat = {
                     _.resolve(call, window, [repeat, val]);
                 });
         }
-        parent.insertBefore(repeat, anchor);
         return repeat;
     },
     style: D.head.append('style')
