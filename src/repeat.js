@@ -34,6 +34,7 @@ var R = _.repeat = {
         if (val !== undefined && val !== null) {
             repeat.xValue = val;
         }
+        parent.insertBefore(repeat, anchor);
         if (repeat.hasAttribute(R.each)) {
             repeat.getAttribute(R.each)
                 .split(',')
@@ -41,7 +42,6 @@ var R = _.repeat = {
                     _.resolve(call, window, [repeat, val]);
                 });
         }
-        parent.insertBefore(repeat, anchor);
         return repeat;
     },
     style: D.head.append('style')
