@@ -37,7 +37,9 @@ Adds `repeat([value])` function to DOM nodes and lists.
 * 2014-12-10 [v0.1.0][] (first public release)
 * 2015-01-19 [v0.1.1][] (bugfix - add backup link/storage for anchor's content)
 * 2015-02-27 [v0.2.1][] (support parent-less nodes and declarative, post-repeat callback hooks)
+* 2015-03-12 [v0.3.0][] (x-repeat-init control)
 
 [v0.1.0]: https://github.com/esha/domx/tree/0.1.0
 [v0.1.1]: https://github.com/esha/domx/tree/0.1.1
 [v0.2.1]: https://github.com/esha/domx/tree/0.2.1
+[v0.3.0]: https://github.com/esha/domx/tree/0.3.0
