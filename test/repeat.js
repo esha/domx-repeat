@@ -1,4 +1,4 @@
-(function(D) {
+(function(D, W) {
   /*
     ======== A Handy Little QUnit Reference ========
     http://api.qunitjs.com/
@@ -25,6 +25,14 @@
         R = _.repeat;
     module("repeat()");
 
+    var inited;
+    D.addEventListener('DOMContentLoaded', function() {
+        inited = window.inited = D.queryAll('['+R.id+']');
+    });
+    test('delayed x-repeat-init', function() {
+        equal(inited.length, 0, "no one should be init'ed yet");
+    });
+
     test("_.", function() {
         equal(typeof _.repeat, "object", "_.repeat");
         equal(R.id, "x-repeat-id");
@@ -40,6 +48,18 @@
         set.forEach(function(_class) {
             equal(typeof _class.prototype.repeat, "function", _class.name+".prototype.repeat");
         });
+    });
+
+    W.addEventListener('load', function() {
+        D.query('button').click();
+    });
+
+// don't run these until after delayed init
+D.addEventListener('click', function() {
+
+    test('after delayed x-repeat-init', function() {
+        var inited = D.queryAll('['+R.id+']');
+        ok(inited.length > 0, "should have init'ed by now");
     });
 
     test("via javascript", function() {
@@ -149,5 +169,6 @@
         el.setAttribute(R.each, 'Test,Nest.Test');
         el.repeat('value');
     });
+});// end onload
 
-}(document));
+}(document, window));

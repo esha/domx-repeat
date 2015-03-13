@@ -1,7 +1,22 @@
 var R = _.repeat = {
     id: 'x-repeat-id',
     each: 'x-repeat-each',
+    context: 'html,[x-repeat-init]',
     count: 0,
+    initAll: function() {
+        D.queryAll(R.context).each(function(context) {
+            var init = context.getAttribute('x-repeat-init') || 'DOMContentLoaded',
+                listener = function() {
+                    context.removeEventListener(init, listener);
+                    context.queryAll('[x-repeat]')
+                           .not('['+R.id+']')
+                           .each(R.init);
+                };
+            if (init !== 'false') {
+                context.addEventListener(init, listener);
+            }
+        });
+    },
     init: function(el, keep) {
         var selector = el.getAttribute('x-repeat'),
             id = R.count++,
@@ -68,8 +83,9 @@ X.add('repeat', function repeat(val) {
 }, [Element]);
 
 R.style.textContent = '[x-repeat] { display: none }';
+R.initAll();//early availability
 D.addEventListener('DOMContentLoaded', function() {
-    D.queryAll('[x-repeat]').each(R.init);
+    R.initAll();//eventual consistency
     R.style.textContent = "\nx-repeat { display: none }"+
                           "\nx-repeat[x-repeat-none] { display: inline-block; }"+
                           "\n["+R.id+"] + x-repeat[x-repeat-none] { display: none; }";
