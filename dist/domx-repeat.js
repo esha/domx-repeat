@@ -1,4 +1,4 @@
-/*! domx-repeat - v0.3.0 - 2015-03-12
+/*! domx-repeat - v0.3.1 - 2015-03-17
 * http://esha.github.io/domx-repeat/
 * Copyright (c) 2015 ESHA Research; Licensed MIT, GPL */
 
@@ -18,13 +18,14 @@ var R = _.repeat = {
         D.queryAll(R.context).each(function(context) {
             var init = context.getAttribute('x-repeat-init') || 'DOMContentLoaded',
                 listener = function() {
-                    context.removeEventListener(init, listener);
+                    D.removeEventListener(init, listener);
                     context.queryAll('[x-repeat]')
                            .not('['+R.id+']')
                            .each(R.init);
                 };
-            if (init !== 'false') {
-                context.addEventListener(init, listener);
+            if (init !== 'true') {
+                context.setAttribute('x-repeat-init', 'true');
+                D.addEventListener(init, listener);
             }
         });
     },
