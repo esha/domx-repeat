@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html x-dot>
+<html x-dot x-repeat-init="click">
 <head>
   <meta charset="utf-8">
-  <title>DOMx Repeat Test Suite</title>
+  <title>DOMx Repeat Custom Init Test Suite</title>
   <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css" media="screen">
   <script src="../bower_components/qunit/qunit/qunit.js"></script>
   <script src="../bower_components/domx/dist/domx.js"></script>
@@ -12,9 +12,27 @@
   <script type="text/javascript">
     // make REPL work in the console easy
     window.D = document;
+    window.W = window;
     window.X = D.x;
     window._ = X._;
-    runMainSuite();
+    window.R = _.repeat;
+
+    W.inited;
+    D.addEventListener('DOMContentLoaded', function() {
+        W.inited = D.queryAll('['+R.id+']');
+    });
+    test('delayed x-repeat-init', function() {
+        equal(W.inited.length, 0, "no one should be init'ed yet");
+    });
+
+    W.addEventListener('load', function() {
+        D.query('button').click();
+    });
+
+    // don't run these until after delayed init
+    D.addEventListener('click', function() {
+        runMainSuite();
+    });// end onload
   </script>
 </head>
 <body>

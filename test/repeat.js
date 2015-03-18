@@ -23,15 +23,6 @@
     var X = D.x,
         _ = X._,
         R = _.repeat;
-    module("repeat()");
-
-    var inited;
-    D.addEventListener('DOMContentLoaded', function() {
-        inited = window.inited = D.queryAll('['+R.id+']');
-    });
-    test('delayed x-repeat-init', function() {
-        equal(inited.length, 0, "no one should be init'ed yet");
-    });
 
     test("_.", function() {
         equal(typeof _.repeat, "object", "_.repeat");
@@ -50,12 +41,8 @@
         });
     });
 
-    W.addEventListener('load', function() {
-        D.query('button').click();
-    });
-
-// don't run these until after delayed init
-D.addEventListener('click', function() {
+// wrap these tests for delayed execution
+W.runMainSuite = function runMainSuite() {
 
     test('after delayed x-repeat-init', function() {
         var inited = D.queryAll('['+R.id+']');
@@ -169,6 +156,6 @@ D.addEventListener('click', function() {
         el.setAttribute(R.each, 'Test,Nest.Test');
         el.repeat('value');
     });
-});// end onload
+};// end runMainSuite
 
 }(document, window));
