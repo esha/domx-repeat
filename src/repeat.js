@@ -60,7 +60,7 @@ var R = _.repeat = {
         }
         return repeat;
     },
-    style: D.head.append('style')
+    style: D.createElement('style')
 };
 
 X.add('repeat', function repeat(val) {
@@ -84,6 +84,7 @@ X.add('repeat', function repeat(val) {
 }, [Element]);
 
 R.style.textContent = '[x-repeat] { display: none }';
+D.head.appendChild(R.style);
 R.initAll();//early availability
 D.addEventListener('DOMContentLoaded', function() {
     R.initAll();//eventual consistency
